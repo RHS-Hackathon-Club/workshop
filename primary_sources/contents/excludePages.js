@@ -1,0 +1,2 @@
+Reassemble.packageList = [];
+Reassemble.excludePages = {};

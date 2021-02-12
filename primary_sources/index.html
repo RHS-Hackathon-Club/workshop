@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<title>Programming Precautions</title>
+<script src="contents/template/js/jquery/jquery.js"></script>
+<script src="contents/template/js/jquery/jquery-ui.js"></script>
+<script src="contents/template/js/common/manualLib_KB.js"></script>
+<script src="contents/tocData.js"></script>
+<script src="contents/KB_keywords.js"></script>
+<link rel="stylesheet" type="text/css" href="contents/template/css/template.css" />
+<style>
+body
+{
+  margin: 0px;
+}
+div#logoPane > img:hover
+{
+  cursor: pointer;
+}
+div#panelNavigate
+{
+  background-color: rgb(0, 150, 200);
+}
+</style>
+<script>
+var prevword = "";
+var prevpage = "";
+function init()
+{
+  window.setTimeout(incsearch, 500);
+};
+function incsearch()
+{
+  var w = Utility.getValueFromElement("filter_word");
+  if (w != null) {
+    if (prevword != w) Reassemble.filterKeyword();
+    prevword = w;
+  }
+  window.setTimeout(incsearch, 500);
+};
+function jumpToTop()
+{
+  var obj = document.getElementById("framePageView");
+  if (obj != null) obj.src = "contents/title.html";
+};
+</script>
+</head>
+<body onload="init()">
+<noscript>
+<div style="border: 4px double black; margin: 4px; padding: 2px; font-weight: bold; background-color: #FFFFCC;">
+<p>
+JavaScript is not available in your browser. Some features of this documentation have been disabled.
+</p>
+<p>
+You cannot use the table of contents when JavaScript is disabled. <br /> Please enable JavaScript and reload this page.<br /> <br />
+</p>
+</div>
+</noscript>
+<!-- 左パネル部 -->
+<div id="panelNavigate">
+<div id="logoPane"><img src="contents/template/img/WiiU_logo.png" onclick="jumpToTop()" title="Back to Top" /></div>
+<div id="titlePane">Programming Precautions</div>
+<div id="tabPane">
+  <ul>
+    <li><a href="#tabPage">By Page</a></li>
+    <li><a href="#tabKeyword">By Keyword</a></li>
+  </ul>
+  <div id="tabKeyword">
+    <div id="filterbox">
+      Search keywords: <input id="filter_word" type="text" value="" />
+    </div>
+    <div id="keywordController">
+      <input type="button" value="OpenAll" onClick="ExpandTree.openAll('keyword_tree');" />&nbsp;
+      <input type="button" value="CloseAll" onClick="ExpandTree.closeAll('keyword_tree');" />
+    </div>
+    <div id="keyword_tree"></div>
+  </div>
+  <div id="tabPage">
+    <div id="searchbox_mini" align="center"></div>
+    <div id="treeController" align="left">
+      <input type="button" value="OpenAll" onClick="ExpandFolder.openAll();" />&nbsp;
+      <input type="button" value="CloseAll" onClick="ExpandFolder.closeAll();" />
+    </div>
+    <div id="contents_tree"></div>
+  </div>
+</div>
+</div>
+<!-- ページ表示部 --> <iframe id="framePageView" src="contents/title.html"></iframe>
+</body>
+</html>

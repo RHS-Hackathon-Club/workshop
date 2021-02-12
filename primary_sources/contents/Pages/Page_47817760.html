@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<script type="text/javascript" src="../template/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="../template/js/common/manualLib.js"></script>
+<script type="text/javascript" src="../tocData.js"></script>
+<link rel="stylesheet" type="text/css" href="../template/css/template.css" />
+<title>5 Mii Characters</title>
+</head>
+<body data-reassemble="autoindex=no,forceNoLabel=yes,autoindextab=fold">
+<div id="autoindex_content">
+<div class="body_content">
+<noscript>
+<div style="border: 4 double black; margin: 4px; padding: 2px; font-weight: bold; background-color: FFFFCC;">
+<p>JavaScript is not available in your browser. Some features of this documentation have been disabled.</p>
+<p>You cannot use the table of contents when JavaScript is disabled. <br />Please enable JavaScript and reload this page.<br /><br /></p>
+</div>
+</noscript>
+
+<!-- 5. Mii -->
+<div class="pagetitle" id="PageId_47817760">5 Mii Characters</div>
+<div class="text">
+
+<!-- 5.1 Mii を使用するアプリケーション -->
+<h1 class="general" id="PageId_56756577">5.1 Applications That Use Mii Characters</h1>
+<div class="text">
+<p>Applications can use two kinds of Mii characters: Mii characters associated with accounts, and Mii characters from the front-end database.</p>
+<p>Mii characters registered in the front-end database arrive there by being created in Mii Maker or received from elsewhere.</p>
+<p>Applications that require use of Mii characters from the front-end database must allow the user to progress in the application without any problems even if no Mii characters exist in the front-end database. Nintendo recommends using one of the following methods for handling this kind of situation:</p>
+<ul>
+  <li>The application displays a message immediately after application startup directing the user to create a Mii character using Mii Maker, and then suspends application progress until the user has created a Mii character.</li>
+  <li>The application starts using a default Mii character, a random Mii character, or a substitute image provided by the application. <br />In this case, Nintendo recommends displaying a message such as the following: &quot;There are no Mii characters available, so a substitute Mii will be used instead. You can create a new Mii in Mii Maker,&quot; or &quot;There are no Mii characters available. You can create a new Mii in Mii Maker.&quot;</li>
+</ul>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>Mii Characters</p>
+  <p>Front-end database</p>
+  <p>Mii Maker</p>
+  <p>FFL</p>
+  <p>Accounts</p>
+</div>
+</div>
+
+<!-- 5.2 Mii に関連するデータの改変禁止 -->
+<h1 class="general" id="PageId_55574572">5.2 Prohibition of Altering Mii-Related Data</h1>
+<div class="text">
+<p>It is prohibited to alter the following data related to Mii characters.</p>
+<ul>
+  <li><SPAN style="font-family:'Courier New',Courier,monospace">FFLStoreData</SPAN></li>
+  <li>The Mii face model work buffer</li>
+  <li>Work buffer for the intermediate database</li>
+  <li>Packet Buffers</li>
+  <li><SPAN style="font-family:'Courier New',Courier,monospace">FFLNetInformation </SPAN> buffer</li>
+  <li><SPAN style="font-family:'Courier New',Courier,monospace">FFLAdditionalInfo</SPAN></li>
+  <li>Other FFL structures</li>
+</ul>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>Mii Characters</p>
+  <p>FFL</p>
+  <p>Prohibition of Altering</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLStoreData</SPAN></p>
+  <p>Face Model</p>
+  <p>Intermediate Database</p>
+  <p>Packet Buffers</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLNetInformation</SPAN></p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLAdditionalInfo</SPAN></p>
+</div>
+</div>
+
+<!-- 5.3 Mii の付加情報を使用する場合 -->
+<h1 class="general" id="PageId_56756593">5.3 Using Additional Information From Mii Characters</h1>
+<div class="text">
+<p>If your application uses additional information that pertains to a Mii character, ensure that the application can proceed without any problems even if a Mii character is used that has none of the following information configured.</p>
+<table class="table">
+  <tbody>
+    <tr>
+      <th>Information</th>
+      <th>Member of <SPAN style="font-family:'Courier New',Courier,monospace">FFLAdditionalInfo</SPAN></th>
+    </tr>
+    <tr>
+      <td>Creator Name</td>
+      <td><SPAN style="font-family:'Courier New',Courier,monospace"><I>creator</I></SPAN></td>
+    </tr>
+    <tr>
+      <td>Month of birth</td>
+      <td><SPAN style="font-family:'Courier New',Courier,monospace"><I>birthMonth</I></SPAN></td>
+    </tr>
+    <tr>
+      <td>Day of birth</td>
+      <td><SPAN style="font-family:'Courier New',Courier,monospace"><I>birthDay</I></SPAN></td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>Mii Characters</p>
+  <p>Additional Information</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLAdditionalInfo</SPAN></p>
+  <p>FFL</p>
+</div>
+</div>
+
+<!-- 5.4 FFL 以外のライブラリから FFLStoreData を取得した場合の対応 -->
+<h1 class="general" id="PageId_47817761">5.4 Obtaining <SPAN style="font-family:'Courier New',Courier,monospace">FFLStoreData</SPAN> from Non-FFL Libraries</h1>
+<div class="text">
+<p>By using the FP, OLV, or NFP libraries from the Cafe SDK, applications are able to obtain the <SPAN style="font-family:'Courier New',Courier,monospace">FFLStoreData</SPAN> structure of Mii characters.</p>
+<p>Whenever you pass the <SPAN style="font-family:'Courier New',Courier,monospace">FFLStoreData</SPAN> of a Mii character to one of the following functions, you must set the <SPAN style="font-family:'Courier New',Courier,monospace"><I>source</I></SPAN> argument to <SPAN style="font-family:'Courier New',Courier,monospace">FFL_DATA_SOURCE_STORE_DATA_ALWAYS</SPAN>.</p>
+<ul>
+  <li><SPAN style="font-family:'Courier New',Courier,monospace">FFLInitCharModel</SPAN> function</li>
+  <li><SPAN style="font-family:'Courier New',Courier,monospace">FFLSetToNetPacket</SPAN> function</li>
+  <li><SPAN style="font-family:'Courier New',Courier,monospace">FFLGetAdditionalInfo</SPAN> function</li>
+</ul>
+<div class="notice">
+  <div class="notice_left"><B>Note:</B></div>
+  <div class="notice_right">
+    <p>From FFL 1.5.2 onward, the <SPAN style="font-family:'Courier New',Courier,monospace">FFL_DATA_SOURCE_STORE_DATA</SPAN> value is deprecated. If you are using that version of FFL or later, you do not need to worry about this issue.</p>
+  </div>
+</div>
+<div class="KB_keyword">
+  <p>Friends</p>
+  <p>Mii Characters</p>
+  <p>FFL</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLStoreData</SPAN></p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFL_DATA_SOURCE_STORE_DATA_ALWAYS</SPAN></p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLInitCharModel</SPAN></p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLSetToNetPacket</SPAN></p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLGetAdditionalInfo</SPAN></p>
+  <p>FP</p>
+  <p>OLV</p>
+  <p>NFP</p>
+  <p>Miiverse</p>
+  <p>amiibo</p>
+</div>
+</div>
+
+<!-- 5.5 オーバーレイアプリ起動中に Mii が追加されることへの注意 -->
+<h1 class="general" id="PageId_56756643">5.5 Addition of Mii Characters While an Overlay Application is Running</h1>
+<div class="text">
+<p>Be aware that it is possible for Mii characters to be added to the Mii front-end database while an overlay application (such as the friend list) is running.</p>
+<p>Also note that Mii characters can only be <I>added</I> to the front-end database while an overlay application is running. Mii characters cannot be deleted from or added to the back-end database.</p>
+<p>Note that you can use the <SPAN style="font-family:'Courier New',Courier,monospace">FFLIsUpdatedOfficialData</SPAN> function to get whether the front-end database has been updated.</p>
+<div class="notice">
+  <div class="notice_left"><B>Note:</B></div>
+  <div class="notice_right">
+    <p>It is only possible to delete a Mii character from the front-end database via the full version of Mii Maker.</p>
+  </div>
+</div>
+<div class="KB_keyword">
+  <p>Mii Characters</p>
+  <p>Front-end database</p>
+  <p>Overlay Application</p>
+  <p>Friend List</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLIsUpdatedOfficialData</SPAN> function</p>
+  <p>Mii Maker</p>
+  <p>Back-end database</p>
+  <p>FFL</p>
+</div>
+</div>
+
+<!-- 5.6 通信機能を利用した Mii のやり取り -->
+<h1 class="general" id="PageId_79059996">5.6 Exchange of Mii Characters via Communication Features</h1>
+<div class="text">
+<p>To send Mii data to another system using the communication features of the application, Nintendo recommends that you use a packet buffer in which the Mii data has been set by the <SPAN style="font-family:'Courier New',Courier,monospace">FFL_SetToNetPacket</SPAN> function.</p>
+<p>Nintendo recommends this because the application receives the packet buffer and sets it in <SPAN style="font-family:'Courier New',Courier,monospace">FFLNetInformation</SPAN>, which is flushed to generate encounters for the Mii character contained in the packet buffer.</p>
+<p>When your application sends Mii nicknames and creator names, Nintendo recommends sending this information in <SPAN style="font-family:'Courier New',Courier,monospace">FFLStoreData</SPAN> or packet buffer format.</p>
+<p>Nintendo recommends this because the nickname and creator name are automatically checked for profanity by the library when applications use the <SPAN style="font-family:'Courier New',Courier,monospace">FFLGetAdditionalInfo</SPAN> function to get these names. If your application exchanges nicknames or creator names as strings, your application must perform the profanity check.</p>
+<div class="notice">
+  <div class="notice_left"><B>Note:</B></div>
+  <div class="notice_right">
+    <p>Contact Nintendo at <A href="mailto:support@noa.com">support@noa.com</A> if you are considering sending Mii characters to platforms other than Wii U using communication features.</p>
+  </div>
+</div>
+<div class="KB_keyword">
+  <p>Mii Characters</p>
+  <p>Communication Features</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLSetToNetPacket</SPAN></p>
+  <p>Packet Buffers</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLNetInformation</SPAN></p>
+  <p>Mii Encounters</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLStoreData</SPAN></p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FFLGetAdditionalInfo</SPAN></p>
+  <p>Profanity Checking</p>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+<hr><p>CONFIDENTIAL</p>
+</div>
+</div>
+</body>
+</html>

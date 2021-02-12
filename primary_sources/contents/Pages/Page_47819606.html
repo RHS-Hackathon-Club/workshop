@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<script type="text/javascript" src="../template/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="../template/js/common/manualLib.js"></script>
+<script type="text/javascript" src="../tocData.js"></script>
+<link rel="stylesheet" type="text/css" href="../template/css/template.css" />
+<title>2 System: General</title>
+</head>
+<body data-reassemble="autoindex=no,forceNoLabel=yes,autoindextab=fold">
+<div id="autoindex_content">
+<div class="body_content">
+<noscript>
+<div style="border: 4 double black; margin: 4px; padding: 2px; font-weight: bold; background-color: FFFFCC;">
+<p>JavaScript is not available in your browser. Some features of this documentation have been disabled.</p>
+<p>You cannot use the table of contents when JavaScript is disabled. <br />Please enable JavaScript and reload this page.<br /><br /></p>
+</div>
+</noscript>
+
+<!-- 2. システム全般 -->
+<div class="pagetitle" id="PageId_47819606">2 System: General</div>
+<div class="text">
+
+<!-- 2.1 シャットダウン処理 -->
+<h1 class="general" id="PageId_47819471">2.1 Shutdown Processing</h1>
+<div class="text">
+<p>Make every effort to complete shutdown processing for your application within 3 seconds. Note, however, that the situations outlined below, where technical factors make it difficult to complete shutdown in time, are treated as exceptions.</p>
+<ul>
+  <li>When writing save data or data equivalent to save data.</li>
+  <li>During communication.</li>
+</ul>
+<p>Ensure the integrity of your save data files even when shutting down. Also see the Function References for further details about the libraries that must have a normal (not forced) shutdown.</p>
+<div class="warning">
+  <div class="warning_left"><B>Note:</B></div>
+  <div class="warning_right">
+    <p>The forced shutdown feature is not activated in the current system version. This means that applications must not continue normal processing in anticipation of the forced shutdown.</p>
+    <p>In particular, if the user presses the POWER Button during a disc error and the application then attempts disc access again, control fails to return from that function. When performing shutdown processing for the FS library, always ensure that you call the <SPAN style="font-family:'Courier New',Courier,monospace">FSDelClient</SPAN> function, which always returns control.</p>
+  </div>
+</div>
+<div class="notice">
+  <div class="notice_left"><B>Note:</B></div>
+  <div class="notice_right">
+    <p>With the current mechanism, it is not possible to clearly distinguish between the application's shutdown processing and the system's shutdown processing. With that said, you can use the following methods as reference to test the length of application shutdown processing, although the results are not conclusive.</p>
+    <ul>
+      <li>Close the application from the HOME Menu and time how long it takes to return to the Wii U Menu.<ul><li>The system-side shutdown processing can sometimes take as long as 30 seconds. If it takes significantly longer than 30 seconds to return to the menu, check how the application implements its shutdown processing.</li></ul></li>
+      <li>Press the POWER Button and time how long it takes for the screen display to disappear.<ul><li>If the application continues rendering (screen display continues moving) for 3 seconds or more, then it is safe to assume that the application's shutdown processing takes 3 seconds or more.</li><li>This method cannot be used if the application implements some mechanism to turn the screen black (or otherwise discontinue screen display) whenever the POWER Button is pressed.</li></ul></li>
+    </ul>
+  </div>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>Shutdown</p>
+  <p>Save Data</p>
+  <p>Forced Shutdown</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FSDelClient</SPAN></p>
+  <p>Wii U Menu</p>
+  <p>FS</p>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<!-- 2.2 バックグラウンド処理がアプリケーションに与える影響 -->
+<h1 class="general" id="PageId_60269181">2.2 Effects of Background Processing on the Application</h1>
+<div class="text">
+<p>Background processes such as downloading data may affect application processing.</p>
+<p>Use Background Stress Mode to check whether or not the effects of background processing are within a range allowable for the application.</p>
+<p>For details on Background Stress Mode, see the <I>Wii U Background Stress Mode</I> documentation included in the Cafe-SDK.</p>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>Background Processing</p>
+  <p>Background Stress Mode</p>
+</div>
+<p>&nbsp;</p>
+</div>
+</div>
+<p>&nbsp;</p>
+<hr><p>CONFIDENTIAL</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,288 @@
+﻿@charset "utf-8";
+
+/* 目次タブ */
+DIV#globalindex_tab
+{
+/*
+  border-bottom-right-radius: 8px;
+*/
+}
+
+/* ページ内目次タブ */
+DIV#autoindex_tab
+{
+  border-bottom-left-radius: 8px;
+}
+
+/* 目次タブ内のタイトル */
+DIV#toc_title
+{
+  border-radius: 4px;
+}
+
+/* 表紙のタイトル */
+DIV.doc_title
+{
+}
+
+/* 注意事項 */
+DIV.warning
+{
+  border-radius: 4px;
+/*   box-shadow: rgba(0,0,0,0.1) 1px 1px; */
+}
+
+/* 補足情報 */
+DIV.notice
+{
+  border-radius: 4px;
+/*   box-shadow: rgba(0,0,0,0.1) 1px 1px; */
+}
+
+DIV.info_new,
+DIV.note_new,
+DIV.warn_new
+{
+  border-radius: 4px;
+/*   box-shadow: rgba(0,0,0,0.1) 1px 1px; */
+}
+
+DIV#keywordController
+{
+  text-align        : center;
+  vertical-align    : middle;
+  padding           : 16px 0px 8px 0px;
+}
+
+DIV.KB_keyword
+{
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 4px;
+  padding: 8px;
+  margin-left: 24px;
+  background-color: #eeeeff;
+}
+
+DIV.KB_keyword:before
+{
+  content: "KEYWORD";
+  font-weight: bold;
+}
+
+DIV.KB_keyword P
+{
+  display: inline;
+  background-color: #ccccff;
+  padding: 2px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ccccff;
+  border-radius: 8px;
+  margin: 4px;
+  line-height: 2.5em;
+  font-size: 15px;
+}
+
+DIV.KB_keyword P:hover
+{
+  cursor: pointer;
+  background-color: #ccffcc;
+  border-color: green;
+}
+
+DIV.body_content
+{
+/*
+  max-width: none;
+*/
+}
+
+DIV.KB_title
+{
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 4px;
+  padding: 8px;
+  margin-top: 16px;
+  margin-left: 8px;
+  background-color: #cceeff;
+  font-size: 15px;
+}
+
+DIV.KB_title A
+{
+  font-size: 22px;
+}
+
+DIV.listline
+{
+  white-space: nowrap;
+}
+
+DIV.listline_file
+{
+  white-space: nowrap;
+}
+
+/*
+DIV.componentChildren
+{
+  display: none;
+}
+*/
+
+div#panelNavigate
+{
+  float: left;
+  width: 400px;
+  height: 100%;
+  margin: 0px;
+  background-color: #cccccc;
+  border-style: none;
+}
+
+div#titlePane
+{
+  width: 400px;
+  height: 48px;
+  color: white;
+  text-align: center;
+  padding: 8px 0px;
+  font-size: 150%;
+/*
+  font-weight: bold;
+*/
+}
+
+div#tabPane
+{
+  background-color: #e3e3e3;
+}
+
+iframe#framePageView
+{
+  width: 1200px;
+  height: 100%;
+  border-style: none;
+  overflow: scroll;
+  margin: 0px;
+  padding: 0px;
+}
+div#keyword_tree
+{
+/*
+  border            : 1px solid gray;
+  padding           : 10px;
+  margin            : 0px;
+  background        : #FCFCFC;
+  overflow          : scroll;
+  overflow-x        : scroll;
+  overflow-y        : scroll;
+*/
+  overflow          : auto;
+  overflow-x        : auto;
+  overflow-y        : auto;
+  height : 80%;
+  padding           : 10px;
+  margin            : 0px 10px;
+  background        : #FCFCFC;
+
+  line-height       : 1.1em;
+  font-size         : 95%;
+  border            : #fff 1px solid;
+  -webkit-border-radius : 6px;
+  -moz-border-radius    : 6px;
+  border-radius         : 6px;
+
+}
+DIV#keyword_tree a
+{
+  text-decoration   : none;
+  font-weight       : normal;
+  font-size         : 95%;
+}
+
+DIV#keyword_tree a:link
+{
+  color             : #111;
+}
+
+DIV#keyword_tree a:visited
+{
+  color             : #333;
+}
+
+DIV#keyword_tree a:hover
+{
+  background-color  : #eee !important;
+}
+DIV#keyword_tree a.focused
+{
+  font-weight       : bold;
+}
+
+div#filterbox
+{
+  padding: 4px;
+  margin: 0px;
+  text-align: left;
+}
+
+input#filter_word
+{
+  width: 230px;
+  font-size: 12px;
+  font-family: Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+div#tabKeyword
+{
+  padding: 8px;
+  font-size: 11pt;
+  font-family: Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+div#tabPage
+{
+  padding: 8px;
+  font-size: 11pt;
+  font-family: Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+div#search_title
+{
+  font-size: 28px;
+}
+
+.ui-widget-header,
+.ui-widget-content,
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default
+{
+  background-image: none;
+}
+
+div#logoPane img
+{
+  margin: 0px;
+}
+
+div#treeController input,
+div#keywordController input
+{
+  font-size: 12px;
+  font-family: Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+input.searchbox_mini_button
+{
+  font-family: Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+div.searchbox_mini_div
+{
+  padding: 0px;
+}

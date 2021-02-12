@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<script type="text/javascript" src="../template/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="../template/js/common/manualLib.js"></script>
+<script type="text/javascript" src="../tocData.js"></script>
+<link rel="stylesheet" type="text/css" href="../template/css/template.css" />
+<title>6 Internet Connections</title>
+</head>
+<body data-reassemble="autoindex=no,forceNoLabel=yes,autoindextab=fold">
+<div id="autoindex_content">
+<div class="body_content">
+<noscript>
+<div style="border: 4 double black; margin: 4px; padding: 2px; font-weight: bold; background-color: FFFFCC;">
+<p>JavaScript is not available in your browser. Some features of this documentation have been disabled.</p>
+<p>You cannot use the table of contents when JavaScript is disabled. <br />Please enable JavaScript and reload this page.<br /><br /></p>
+</div>
+</noscript>
+
+<!-- 6. インターネット接続 -->
+<div class="pagetitle" id="PageId_47817753">6 Internet Connections</div>
+<div class="text">
+
+<!-- 6.1 接続開始処理の実装 -->
+<h1 class="general" id="PageId_47817754">6.1 Implementation for Starting Connections</h1>
+<div class="text">
+<p>The application must always start an Internet connection by calling either the <SPAN style="font-family:'Courier New',Courier,monospace">nn::ac::Connect</SPAN> or <SPAN style="font-family:'Courier New',Courier,monospace">nn::ac::ConnectAsync</SPAN> function.</p>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>Internet Connections</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">nn::ac::Connect</SPAN></p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">nn::ac::ConnectAsync</SPAN></p>
+  <p>AC</p>
+</div>
+</div>
+
+<!-- 6.2 バックグラウンド処理と関連のある関数を呼び出す際の注意 -->
+<h1 class="general" id="PageId_60269113">6.2 Caution When Calling Functions Related to Background Processing</h1>
+<div class="text">
+<p>Functions in libraries involved with background processing (including AC, ACT, BOSS, FP, and others) may exhibit decreased responsiveness when the application calls functions in higher-priority libraries and increases the load on the system.</p>
+<p>For that reason, if the application calls functions from background-processing libraries in the main loop and these functions experience decreased responsiveness, it may result in slowdown or skipped frames.</p>
+<p>Likewise, calling such functions frequently (every few frames or so) may result in an increased load on the system, so you must also avoid calling them frequently. If your application uses <SPAN style="font-family:'Courier New',Courier,monospace">nn::fp::IsOnline</SPAN> or any other function which needs to check its current status through polling, then instead of calling the function itself when you need to check the status, call the function roughly every 100 msec from a different thread and save the results of those calls.</p>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>Internet Connections</p>
+  <p>Background Processing</p>
+  <p>AC</p>
+  <p>ACT</p>
+  <p>BOSS</p>
+  <p>FP</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">nn::fp::IsOnline</SPAN> function</p>
+</div>
+<p>&nbsp;</p>
+</div>
+</div>
+<p>&nbsp;</p>
+<hr><p>CONFIDENTIAL</p>
+</div>
+</div>
+</body>
+</html>

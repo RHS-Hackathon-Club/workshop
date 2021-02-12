@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<script type="text/javascript" src="template/js/jquery/jquery.js"></script>
+<!-- ツリーのデータを表示に使用しています -->
+<script type="text/javascript" src="template/js/common/manualLib.js"></script>
+<script type="text/javascript" src="tocData.js"></script>
+<script type="text/javascript" src="searchindex.js"></script>
+<link href="template/css/template.css" rel="stylesheet" type="text/css" />
+<title>Search Page</title>
+
+<style type="text/css">
+<!--
+-->
+</style>
+
+</head>
+<body data-reassemble="forcenolabel=yes,forceNoIndex=no" onload="startSearch();">
+<div class="body_content">
+
+<div id="search_title">Search Page</div>
+<noscript>
+<div id="search_noscript">You must enable JavaScript in order to use the search feature.</div>
+</noscript>
+<div id="search_hint">
+You can search the documentation from this page. Enter keywords in the textbox below, and press <SPAN style="font-family:'Courier New',Courier,monospace">Enter</SPAN> or click <B>Search</B> to search for them. <br/>Pages containing the keywords you entered will be retrieved. <B>Note:</B> Only pages containing all of the specified keywords will be retrieved.
+</div>
+
+<div id="search_box">
+   <form name="search" action="" method="get">
+     <fieldset class="search_fieldset">
+       <input type="text" class="search_query" name="q" />
+       <button class="search_button" title="Search">Search</button><br /> <!--
+       <input type="checkbox" name="api" value="0" />検索結果に関数リファレンスのページを含めない
+-->
+     </fieldset>
+     <input type="hidden" name="skip" value="0">
+   </form>
+   <form name="dummy">
+     <input type="hidden" name="q_string" value="">
+     <input type="hidden" name="api_flag" value="">
+   </form>
+</div>
+
+<div id="search_message"></div>
+<div id="search_result"></div>
+
+<script type="text/javascript">
+<!--
+var q_string = "";
+var api_flag = true;
+var q_skip = 0;
+function startSearch()
+{
+  // GETで渡されるパラメータの解釈
+  var query = location.search;
+  query = query.slice(query.lastIndexOf("?")+1);
+  var params = query.split("&");
+  for (var i = 0; i < params.length; i++)
+  {
+    var param = params[i];
+    var ind = param.indexOf("=");
+    if (ind < 0) continue;
+    var key = param.substring(0, ind);
+    key = decodeURIComponent(key);
+    key = key.replace(/\s/g, "");
+    if (key.match(/^q$/i))
+    {
+      var data = param.slice(ind + 1);
+      if (data == null) data = "";
+      var array = data.split("+");
+      q_string = "";
+      for (var n = 0; n < array.length; n++) q_string += (((n > 0) ? " " : "") + decodeURIComponent(array[n]));
+    }
+    else if (key.match(/^api$/i))
+    {
+      var data = param.slice(ind + 1);
+      if (data == null) data = "";
+      if (data == "0") api_flag = false;
+    }
+    else if (key.match(/^skip$/i))
+    {
+      var data = param.slice(ind + 1);
+      if (data != null) q_skip = parseInt(data);
+      if (isNaN(q_skip)) q_skip = 0;
+    }
+  }
+  if ((document.search != null) && (document.search.api != null))
+  {
+    document.search.api.checked = !api_flag;
+  }
+  if (q_string != "")
+  {
+    var s = q_string;
+    if ((document.search != null) && (document.search.q != null))
+    {
+      document.search.q.value = s;
+      document.search.q.focus();
+      document.search.q.select();
+    }
+    document.dummy.q_string.value = q_string;
+    document.dummy.api_flag.value = api_flag;
+    Search.search(s, "search_message", "search_result", api_flag, q_skip);
+  }
+}
+
+function btnClick(value)
+{
+  if ((document.search != null) && (document.search.skip != null))
+  {
+    if (document.search.q != null) document.search.q.value = document.dummy.q_string.value;
+    if (document.search.api != null) document.search.api.checked = (document.dummy.api_flag.value != "1");
+    document.search.skip.value = value;
+    document.search.submit();
+  }
+}
+// -->
+</script>
+
+<p>&nbsp;</p>
+<hr><p>CONFIDENTIAL</p>
+</div>
+</body>
+</html>

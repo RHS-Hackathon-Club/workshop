@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<script type="text/javascript" src="../template/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="../template/js/common/manualLib.js"></script>
+<script type="text/javascript" src="../tocData.js"></script>
+<link rel="stylesheet" type="text/css" href="../template/css/template.css" />
+<title>4 Controllers</title>
+</head>
+<body data-reassemble="autoindex=no,forceNoLabel=yes,autoindextab=fold">
+<div id="autoindex_content">
+<div class="body_content">
+<noscript>
+<div style="border: 4 double black; margin: 4px; padding: 2px; font-weight: bold; background-color: FFFFCC;">
+<p>JavaScript is not available in your browser. Some features of this documentation have been disabled.</p>
+<p>You cannot use the table of contents when JavaScript is disabled. <br />Please enable JavaScript and reload this page.<br /><br /></p>
+</div>
+</noscript>
+
+<!-- 4. コントローラー -->
+<div class="pagetitle" id="PageId_47817745">4 Controllers</div>
+<div class="text">
+
+<!-- 4.1 1 フレームごとに RGB 値の変化を繰り返すことへの制限 -->
+<h1 class="general" id="PageId_47819492">4.1 Restriction on Repeated Per-Frame Changes of RGB Values Displayed on the Wii U GamePad</h1>
+<div class="text">
+<p>The LCD screen of the Wii U GamePad uses the dot-inversion drive method, but it is still possible for this screen to develop flickering or symptoms resembling screen burn-in (where an afterimage remains on the screen even after a different image is displayed) if the exact same per-frame change in RGB values is cycled to the same pixel over and over for longer than a certain period of time.</p>
+<p>Specific examples in which these symptoms occur are shown in the table below.</p>
+<table class="table">
+  <tbody>
+    <tr>
+      <th>Change in RGB Values</th>
+      <th>Regarded as repeated per-frame change?</th>
+      <th>Reason</th>
+    </tr>
+    <tr>
+      <td>
+        <p><SPAN style="font-family:'Courier New',Courier,monospace">(0,0,0)</SPAN> &rarr; <SPAN style="font-family:'Courier New',Courier,monospace">(255,255,255)</SPAN> &rarr; <SPAN style="font-family:'Courier New',Courier,monospace">(0,0,0)</SPAN> &rarr; &hellip;</p>
+      </td>
+      <td>Yes</td>
+      <td>R, G, and B cycle between the same values in alternate frames.</td>
+    </tr>
+    <tr>
+      <td>
+        <p><SPAN style="font-family:'Courier New',Courier,monospace">(255,255,255)</SPAN> &rarr; <SPAN style="font-family:'Courier New',Courier,monospace">(255,255,254)</SPAN> &rarr; <SPAN style="font-family:'Courier New',Courier,monospace">(255,255,255)</SPAN> &rarr;&hellip;</p>
+      </td>
+      <td>Yes</td>
+      <td>B cycles between the same values in alternate frames. Phenomenon occurs even if the change in value is small.</td>
+    </tr>
+    <tr>
+      <td>
+        <p><SPAN style="font-family:'Courier New',Courier,monospace">(255,255,255)</SPAN> &rarr; <SPAN style="font-family:'Courier New',Courier,monospace">(255,255,255)</SPAN> &rarr; <SPAN style="font-family:'Courier New',Courier,monospace">(0,0,0)</SPAN> &rarr; <SPAN style="font-family:'Courier New',Courier,monospace">(0,0,0)</SPAN> &rarr; <SPAN style="font-family:'Courier New',Courier,monospace">(255,255,255)</SPAN> &rarr; <SPAN style="font-family:'Courier New',Courier,monospace">(255,255,255)</SPAN> &rarr; &hellip;</p>
+      </td>
+      <td>No</td>
+      <td>R, G, and B cycle between the same values, but the cycle is every two frames.</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<p>These symptoms will gradually go away as soon as the repeated per-frame change in RGB values stops occurring; however, while present these symptoms would greatly bother the user. Therefore, it is prohibited to continuously cycle the same repeated per-frame change in RGB values to any single pixel on the Wii U GamePad screen for more than a few seconds.</p>
+<div class="notice">
+  <div class="notice_left"><B>Note:</B></div>
+  <div class="notice_right">
+    <p>Nintendo sets no restrictions on TV displays for this matter. This is because the concern only applies to LCD displays using the dot-inversion drive method, and not all TVs are this type of display.</p>
+  </div>
+</div>
+<div class="KB_keyword">
+  <p>Wii U GamePad</p>
+  <p>Controllers</p>
+  <p>LCD display</p>
+  <p>Cyclical changes</p>
+  <p>Screen burn-in</p>
+  <p>Changes in brightness</p>
+</div>
+</div>
+
+<!-- 4.2 加速度センサーのゼロ点ズレ -->
+<h1 class="general" id="PageId_47820253">4.2 Zero-Point Drift in the Accelerometer</h1>
+<div class="text">
+<p>The zero-point of the accelerometers built into the Wii U GamePad, Wii Remote, and Wii Remote Plus controllers can accumulate a drift of up to &plusmn;0.13G over time (approximately up to 12 degrees in angle).</p>
+<p>For this reason, you must ensure that your application can handle even a zero-point drift of 0.13G without problems when determining that a controller is at rest, or when using very small changes in attitude information. For example, make allowances for an input play tolerance of 0.13G in your application, or prepare modes with such a feature.</p>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>Wii U GamePad</p>
+  <p>Controllers</p>
+  <p>Wii Remote</p>
+  <p>Wii Remote Plus</p>
+  <p>Accelerometer</p>
+  <p>Zero-point drift</p>
+  <p>KPAD</p>
+  <p>WPAD</p>
+  <p>VPAD</p>
+</div>
+</div>
+
+<!-- 4.3 DRC のジャイロセンサーのゼロ点補正 -->
+<h1 class="general" id="PageId_48694943">4.3 Wii U GamePad Gyro Sensor Zero-Point Correction</h1>
+<div class="text">
+<p>The gyro sensor in the Wii U GamePad automatically performs zero-point correction when the system determines that the GamePad is at rest. Therefore, in applications designed to have the users move the Wii U GamePad extremely slowly, it is possible for the user's motion to not be accurately reflected in the game.</p>
+<p>Applications with specifications in which the Wii U GamePad is moved slowly can avoid this problem by using the <SPAN style="font-family:'Courier New',Courier,monospace">VPADSetGyroZeroDriftMode</SPAN> function to set the threshold for the amount of motion that is still regarded as &quot;at-rest&quot; by the automatic zero-point correction.</p>
+<p>However, if you set <SPAN style="font-family:'Courier New',Courier,monospace">VPAD_GYRO_ZERODRIFT_NONE</SPAN> using the <SPAN style="font-family:'Courier New',Courier,monospace">VPADSetGyroDriftMode</SPAN> function, you must implement a separate sequence for zero-point correction in your application, such as the following.</p>
+<ol>
+  <li>Temporarily set <SPAN style="font-family:'Courier New',Courier,monospace">VPAD_GYRO_ZERODRIFT_STANDARD</SPAN> using the <SPAN style="font-family:'Courier New',Courier,monospace">VPADSetGyroZeroDriftMode</SPAN> function.</li>
+  <li>Display a message prompting the user to put down the GamePad on a flat surface.</li>
+  <li>Wait until zero-point correction is complete (until the <SPAN style="font-family:'Courier New',Courier,monospace">VPADIsEnableGyroZeroDrift</SPAN> function returns <SPAN style="font-family:'Courier New',Courier,monospace">1.0f</SPAN>).</li>
+  <li>Set <SPAN style="font-family:'Courier New',Courier,monospace">VPAD_GYRO_ZERODRIFT_NONE</SPAN> using the <SPAN style="font-family:'Courier New',Courier,monospace">VPADSetGyroZeroDriftMode</SPAN> function.</li>
+</ol>
+<p>Nintendo recommends performing the above sequence every time at the beginning of scenes which use <SPAN style="font-family:'Courier New',Courier,monospace">VPAD_GYRO_ZERODRIFT_NONE</SPAN>, and also allowing the sequence to be invoked from within such scenes if they continue for a long time.</p>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>Wii U GamePad</p>
+  <p>Controllers</p>
+  <p>Gyro sensor</p>
+  <p>Zero-Point Correction</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">VPADSetGyroZeroDriftMode</SPAN></p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">VPAD_GYRO_ZERODRIFT_NONE</SPAN></p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">VPAD_GYRO_ZERODRIFT_STANDARD</SPAN></p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">VPADIsEnableGyroZeroDrift</SPAN></p>
+  <p>VPAD</p>
+</div>
+</div>
+
+<!-- 4.4 Wii モーションプラス起動の禁止 -->
+<h1 class="general" id="PageId_47817750">4.4 Prohibition Against Starting Wii MotionPlus</h1>
+<div class="text">
+<p>Applications that do not support Wii MotionPlus must not start it.</p>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>Controllers</p>
+  <p>Wii MotionPlus</p>
+</div>
+</div>
+
+<!-- 4.5 Wiiリモコンのポインターを使用しないアプリケーション -->
+<h1 class="general" id="PageId_47819514">4.5 Applications That Do Not Use the Wii Remote Pointer</h1>
+<div class="text">
+<p>Applications that do not use the Wii Remote pointer must turn off the power for the pointer.</p>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>Controllers</p>
+  <p>Wii Remote</p>
+  <p>Pointer</p>
+</div>
+</div>
+
+<!-- 4.6 DRC のマイク入力の誤判定防止 -->
+<h1 class="general" id="PageId_48705258">4.6 Preventing False Detection of Wii U GamePad Microphone Input</h1>
+<div class="text">
+<p>Wii U GamePad microphone input contains a noise component. This means that within certain ranges, microphone input will be erroneously detected even when there is no microphone input present (false positives). <br /><strong>To avoid erroneous detection of microphone input, you must thoroughly test the application to verify that no such false response occurs in the anticipated play environment.</strong></p>
+<div class="KB_keyword">
+  <p>Wii U GamePad</p>
+  <p>Controllers</p>
+  <p>Microphone</p>
+  <p>Noise</p>
+  <p>False detection</p>
+  <p>False response</p>
+  <p>MIC</p>
+</div>
+<p>
+  <strong><br /></strong>
+</p>
+</div>
+</div>
+<p>&nbsp;</p>
+<hr><p>CONFIDENTIAL</p>
+</div>
+</div>
+</body>
+</html>

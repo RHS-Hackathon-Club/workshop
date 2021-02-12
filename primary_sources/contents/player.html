@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<link rel="stylesheet" type="text/css" href="template/css/thickbox.css" />
+<title></title>
+</head>
+<body style="margin: 0px; padding: 0px;">
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" style="margin: 0px; padding: 0px; border: 0px;">
+<tr>
+<td align="center" valign="middle" style="margin: 0px; padding: 0px; border: 0px;"><div id="swfcontent" style="margin: 0px; padding: 0px;"><div id="flvplayer" style="margin: 0px;"></div></div></td>
+</tr>
+</table>
+
+<script type="text/javascript">
+<!--
+
+setTimeout(function() {
+
+if( typeof params.mv != 'undefined') {
+
+	var ary = location.href.split('/');
+	ary.pop();
+	var nprev = params.mv.indexOf('../');
+	while (nprev == 0)
+	{
+		ary.pop();
+		params.mv = params.mv.slice(3);
+		nprev = params.mv.indexOf('../');
+	}
+	var currentHTMLPath = ary.join('/');
+	var u = navigator.userAgent;
+	var _title = document.title;
+
+	//Play Movie
+//	var flvfile = currentHTMLPath + '/' + params.mv + '.flv';
+	var flvfile = currentHTMLPath + '/' + params.mv;
+	if(swfobject.hasFlashPlayerVersion('8.0.0')) {
+		var flashvars = {
+			'filename': flvfile,
+			'stagewidth': params.width
+		};
+		var params2 = {
+			id: 'flvplayer',
+			wmode : 'transparent',
+			allowFullScreen : 'false',
+			allowScriptAccess : 'sameDomain',
+			quality : 'high'
+		};
+		var attributes = {};
+		swfobject.embedSWF('../template/swf/player.swf', 'flvplayer', params.width, params.height, '8.0.0','', flashvars, params2, attributes);
+	} else {
+		document.getElementById('swfcontent').innerHTML = '<div style="padding-bottom:40px;"><img src="' + params.mv + '.jpg" /><' + '/div>';
+	}
+	document.title = _title;
+	if (typeof titlechange != 'undefined') titlechange();
+}
+
+}, 800);
+//-->
+</script>
+
+<!--[if IE ]>
+<script type="text/javascript">
+_title2 = document.title;
+function titlechange(){
+	document.title = _title2;
+	setTimeout('titlechange()',500);
+}
+</script>
+<![endif]-->
+</body>
+</html>

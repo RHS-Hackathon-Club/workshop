@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<script type="text/javascript" src="template/js/jquery/jquery.js"></script>
+<!-- ツリーのデータを表示に使用しています -->
+<script type="text/javascript" src="template/js/common/manualLib.js"></script>
+<script type="text/javascript" src="tocData.js"></script>
+<script type="text/javascript" src="KB_keywords.js"></script>
+<link href="template/css/template.css" rel="stylesheet" type="text/css" />
+<title>Keyword Jump</title>
+
+<style type="text/css">
+<!--
+div.KB_keyword a
+{
+  color: black;
+  font-size: 100%;
+}
+div.KB_keyword a:hover,
+div.KB_keyword a:link,
+div.KB_keyword a:visited
+{
+  text-decoration: none;
+}
+-->
+</style>
+
+</head>
+<body data-reassemble="forcenolabel=yes,forceNoIndex=no" onload="startSearch();">
+<div class="body_content">
+
+<div id="search_title">Keyword Jump</div>
+<noscript>
+<div id="search_noscript">You must enable JavaScript in order to use the keyword jump feature.</div>
+</noscript>
+
+<div id="search_result"></div>
+
+<script type="text/javascript">
+<!--
+function textSorter(a, b)
+{
+  var ia = a.toLowerCase();
+  var ib = b.toLowerCase();
+  return ((ia < ib) ? -1 : ((ia > ib) ? 1 : 0));
+};
+
+function pageSorter(a, b)
+{
+  var ia = a.title.toLowerCase();
+  var ib = b.title.toLowerCase();
+  return ((ia < ib) ? -1 : ((ia > ib) ? 1 : 0));
+};
+
+var q_string = "";
+function startSearch()
+{
+  // GETで渡されるパラメータの解釈
+  var query = location.search;
+  query = query.slice(query.lastIndexOf("?")+1);
+  var params = query.split("&");
+  for (var i = 0; i < params.length; i++) {
+    var param = params[i];
+    var ind = param.indexOf("=");
+    if (ind < 0) continue;
+    var key = param.substring(0, ind);
+    key = decodeURIComponent(key);
+    key = key.replace(/\s/g, "");
+    if (key.match(/^q$/i)) {
+      var data = param.slice(ind + 1);
+      if (data == null) data = "";
+      var array = data.split("+");
+      q_string = "";
+      for (var n = 0; n < array.length; n++) q_string += (((n > 0) ? " " : "") + decodeURIComponent(array[n]));
+    }
+  }
+  KB_search(q_string);
+};
+function KB_search(word) {
+  var objResult = document.getElementById("search_result");
+  if (objResult == null) return;
+  var ret = "";
+  if (word != "") {
+    if ((KB_keywords != null) && (KB_keywords.keylist != null) && (KB_keywords.keyword != null) && (KB_keywords.page != null)) {
+      var keylist = KB_keywords.keylist;
+      var keywords = KB_keywords.keyword;
+      var pages = KB_keywords.page;
+      var keyword = keywords[word];
+      if (keyword != null) {
+        var rootPath = TemplateSettings.getRootPath();
+        keyword.sort(pageSorter);
+        var pagecount = keyword.length;
+        for (var i = 0; i < pagecount; i++) {
+          ret += ("<div class=\"KB_title\"><a href=\"" + rootPath + "Pages/" + keyword[i].url + "\">" + Utility.escapeHtml(keyword[i].title) + "</a>");
+          ret += "<br /><br />";
+          var page = pages[keyword[i].id];
+          if (page != null) {
+            ret += "<div class=\"KB_keyword\">";
+            var array = new Array();
+            var datacount = 0;
+            for (var data in page) {
+              var index = page[data];
+              array[index] = "" + data;
+              if (datacount <= index) datacount = index + 1;
+            }
+            array.sort(textSorter);
+            for (var j = 0; j < datacount; j++) {
+              if (array[j] != null) ret += ("<p onclick=\"KB_search('" + Utility.escapeHtml(array[j]) + "')\">" + Utility.escapeHtml(array[j]) + "</p> ");
+            }
+            ret += "</div>";
+          }
+          ret += "</div>";
+        }
+      }
+    }
+  }
+  $(objResult).html(ret);
+  var title = "Pages containing '" + word + "':";
+  var objTitle = document.getElementById("search_title");
+  if (objTitle != null) $(objTitle).html(title);
+  document.title = title;
+};
+// -->
+</script>
+
+<p>&nbsp;</p>
+<hr><p>CONFIDENTIAL</p>
+</div>
+</body>
+</html>
