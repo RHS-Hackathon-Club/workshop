@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<script type="text/javascript" src="../template/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="../template/js/common/manualLib.js"></script>
+<script type="text/javascript" src="../tocData.js"></script>
+<link rel="stylesheet" type="text/css" href="../template/css/template.css" />
+<title>3 File System</title>
+</head>
+<body data-reassemble="autoindex=no,forceNoLabel=yes,autoindextab=fold">
+<div id="autoindex_content">
+<div class="body_content">
+<noscript>
+<div style="border: 4 double black; margin: 4px; padding: 2px; font-weight: bold; background-color: FFFFCC;">
+<p>JavaScript is not available in your browser. Some features of this documentation have been disabled.</p>
+<p>You cannot use the table of contents when JavaScript is disabled. <br />Please enable JavaScript and reload this page.<br /><br /></p>
+</div>
+</noscript>
+
+<!-- 3. ファイルシステム -->
+<div class="pagetitle" id="PageId_47817742">3 File System</div>
+<div class="text">
+
+<!-- 3.1 長時間連続的に行うシーケンシャルでないアクセスの禁止 -->
+<h1 class="general" id="PageId_47819451">3.1 Prohibition of Prolonged, Continuous, Non-Sequential Access</h1>
+<div class="text">
+<p>Avoid implementations where, if there has been no user input for 5 minutes or more, the application still performs continuous, non-sequential disc access for an hour or more.</p>
+<p>Here, &quot;non-sequential access&quot; is defined as seek accesses on a disc where the seeks are more than 200 MB of data apart. Prolonged, continuous, non-sequential access repeated at intervals of 5 seconds or less shortens the lifetime of the disc drive.</p>
+<p>To avoid unnecessary aging of the disc drive while the user is not operating the application, do not conduct this kind of non-sequential access over a period of more than 1 hour.</p>
+<p>For example, when playing a long movie, position the files that will be accessed near each other and, if non-sequential access will be carried out, limit the number of loops.</p>
+<div class="notice">
+  <div class="notice_left"><B>Note:</B></div>
+  <div class="notice_right">
+    <p>Performing non-sequential access will cause the disc drive's pickup head to make an audible sound as it operates. If this operation sound is heard too frequently, it may cause the user to suspect that the unit is producing abnormal noises and has become defective. It is therefore preferable to use sequential access in order to avoid such situations.</p>
+  </div>
+</div>
+<p>Below are examples of this issue and possible solutions.</p>
+<ul>
+  <li>You have a demo that plays a video file, while playing a separate audio file as background music. It is possible that this demo will run in an infinite loop. <br /><B>Solution 1:</B> Interleave the video and audio files into a single file, and play back the audio portion in software. <br />This will make access to the disc drive sequential. <br /><B>Solution 2:</B> Play the background music for a few loops (say, three), and then fade it out and stop playback. <br />Subsequently, the demo will only be playing the video, and access to the disc drive will be sequential.<br /><br /></li>
+  <li>You play two videos simultaneously, and it is possible that they will be played in an infinite loop. <br /><B>Solution 1:</B> Interleave the two video files into a single file. <br />This will make access to the disc drive sequential. <br /><B>Solution 2:</B> Play the videos a few times (say, three), and then replace them both with still images. <br />This will avoid playing them in an infinite loop.<br /><br /></li>
+  <li>You have an interactive game with artificial intelligence. There is a section where the game continually loads dialogue data, while playing an audio file as background music. If there is no input from the controller, it is possible that this will be repeated in an infinite loop. <br /><B>Solution:</B> If there is no input from the controller for a certain period of time (say, 5 minutes), make the game character fall asleep and stop talking. <br />As a result, the game will only access the disc drive to play the background music.</li>
+</ul>
+<div class="KB_keyword">
+  <p>File System</p>
+  <p>Period with No User Input</p>
+  <p>Disc Access</p>
+  <p>Non-Sequential Access</p>
+  <p>Disc Drive</p>
+  <p>Aging of the Disc Drive</p>
+  <p>Video</p>
+  <p>FS</p>
+</div>
+</div>
+
+<!-- 3.2 ファイルのタイムスタンプを利用しない -->
+<h1 class="general" id="PageId_54700294">3.2 Not Using File Timestamps</h1>
+<div class="text">
+<p>When the application's data files (such as save data) are transferred between devices or are transferred when the system is sent in for repair, the creation date and last-modified date of those files (the file timestamps <SPAN style="font-family:'Courier New',Courier,monospace"><I>ctime</I></SPAN> and <SPAN style="font-family:'Courier New',Courier,monospace"><I>mtime</I></SPAN> in the <SPAN style="font-family:'Courier New',Courier,monospace">FSStat</SPAN> structure) are overwritten by the system. For this reason, do not implement your application in a way that displays the file timestamp as the save data creation date, or otherwise base your implementation on the assumption that these timestamps can only be rewritten by the application.</p>
+<p>For example, do not implement any feature that uses a procedure like the following to check for alteration of save data based on the save data file's last-modified date.</p>
+<ol>
+  <li>The application gets the last-modified date of Save Data A from the last-modified timestamp in the <SPAN style="font-family:'Courier New',Courier,monospace">FSStat</SPAN> structure.</li>
+  <li>The application saves this last-modified timestamp value in a different save data file (Save Data B).</li>
+  <li>Next time the application is launched, the application checks whether the last-modified date of Save Data A is unchanged from the value saved in Save Data B.</li>
+</ol>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>File System</p>
+  <p>Save Data</p>
+  <p>Timestamps</p>
+  <p>File changes</p>
+  <p>Checking for alteration</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">FSStat</SPAN> structure</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace"><I>ctime</I></SPAN></p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace"><I>mtime</I></SPAN></p>
+  <p>FS</p>
+  <p>SAVE</p>
+</div>
+<p>&nbsp;</p>
+</div>
+
+<!-- 3.3 -->
+<!-- The below section describes how to perform "Disc Timing Emulation". What is the command to execute the application? Use underscores instead of spaces, case sensitive. /(command).txt -->
+<h1 class="general" id="PageId_69370705">3.3 How to Use Disc Timing Emulation</h1>
+<div class="text">
+<p><I>Disc timing emulation</I> is a feature built into CAT-DEV that emulates the speed of reading a retail disc by taking into account the placement of data on the disc and the associated seek time.</p>
+<p>By using disc timing emulation, you can test an application in an environment similar to that of the retail disc without needing to burn the application to a CAT-R disc and run it on CAT-R hardware.</p>
+<p>Due to the nature of the hardware, the disc's random access speeds may be slow. As such, there can be major problems if you develop your application on CAT-DEV without using disc timing emulation, and only learn late in the development stages that loading data on a real disc takes longer than expected. You can check the actual access speeds by debugging on CAT-R hardware, but we believe such debugging frequently does not occur until late in the development stages of an application. In order to prevent such problems before they occur, at an early stage of development you must run the application on CAT-DEV with disc timing emulation enabled, and check whether there are any major problems with loading data from the disc.</p>
+<p>If a problem is found, you may be able to shorten data load time by figuring out a better way to physically arrange the files on the disc. Alternatively, you may also be able to shorten data load time by caching frequently-read data to memory or by devising a way to pack data together so that the smallest possible amount of data is read all together at the same time. If you discover a problem in the early stages, you should have enough time to re-investigate the application's design.</p>
+<p>In order to use disc timing emulation with SDK 2.12.12 and prior SDK versions, you must perform the following procedure to change the CAT-DEV settings before running the application.</p>
+<ul>
+  <li>Using an Internet browser, access the webpage for your particular CAT-DEV unit and enable disc timing emulation.<ul><li>See the Cafe SDK API Reference Manual for detailed steps.</li></ul></li>
+  <li>Launch the application through one of the following methods. <br /><strong><B>Note:</B> You cannot use disc timing emulation with the standard command to execute the program (i.e.<SPAN style="font-family:'Courier New',Courier,monospace"> cafex run &lt;Path to RPX&gt;</SPAN>).</strong><ul><li>Execute the application's RPX file with <SPAN style="font-family:'Courier New',Courier,monospace">cafex discrun</SPAN>.<p><SPAN style="font-family:'Courier New',Courier,monospace">cafex <strong>discrun</strong> &lt;Path to RPX&gt;</SPAN></p></li><li>Convert the application to a wumad file and launch the application with <SPAN style="font-family:'Courier New',Courier,monospace">cafex</SPAN> as shown below.<p><SPAN style="font-family:'Courier New',Courier,monospace">cafex run -e wumad:&lt;Path to Wumad&gt;</SPAN></p></li><li>Convert the application to a wumad file and upload it to the CAT-DEV's built-in HDD, then launch the application with <SPAN style="font-family:'Courier New',Courier,monospace">cafex</SPAN>  as shown below.<p><SPAN style="font-family:'Courier New',Courier,monospace">cafex run -e h:&lt;bank&gt; -e mcp:launch_hint:odd &lt;Path to RPX&gt;</SPAN></p></li><li>Convert the application's RPX to a wumad file and upload the file to the CAT-DEV, then launch the application in the CAT-DEV's standalone mode as shown below.<p><SPAN style="font-family:'Courier New',Courier,monospace">cafex headlessrun &lt;Path to RPX&gt;</SPAN></p></li></ul></li>
+</ul>
+<p>&nbsp;</p>
+<div class="KB_keyword">
+  <p>File System</p>
+  <p>Disc Timing Emulation</p>
+  <p>Disc</p>
+  <p>CAT-DEV</p>
+  <p>CAT-R</p>
+  <p><SPAN style="font-family:'Courier New',Courier,monospace">cafex</SPAN></p>
+  <p>wumad</p>
+</div>
+<p>&nbsp;</p>
+</div>
+</div>
+<p>&nbsp;</p>
+<hr><p>CONFIDENTIAL</p>
+</div>
+</div>
+</body>
+</html>
